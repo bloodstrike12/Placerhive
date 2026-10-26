@@ -1,0 +1,20 @@
+<div class="alert-banner"><strong>PLACERHIVE</strong> · Candidate services are free. <a href="{{ url_for('home') }}#contact">Contact our team</a></div>
+<header class="header">
+  <div class="nav-container">
+    <a class="brand" href="{{ url_for('home') }}" aria-label="PLACERHIVE home"><img src="{{ site_logo }}" alt="PLACERHIVE" class="brand-logo"></a>
+    <nav class="site-nav" aria-label="Main navigation">
+      <button class="mobile-menu-btn" type="button" aria-label="Open menu" aria-expanded="false">☰</button>
+      <ul class="nav-links">
+        <li><a href="{{ url_for('home') }}">Home</a></li>
+        <li><a href="{{ url_for('jobs') }}">Find Jobs</a></li>
+        <li><a href="{{ url_for('seek_job') }}">Seek a Job</a></li>
+        <li><a href="{{ url_for('employer') }}">Hire Talent</a></li>
+        <li><a href="{{ url_for('services_page') }}">Services</a></li>
+        <li><a href="{{ url_for('founder_page') }}">Founder</a></li>
+        <li><a href="{{ url_for('home') }}#contact">Contact</a></li>
+        {% if current_user %}<li><a href="{{ url_for('account') }}">My Account</a></li><li><a href="#" onclick="logoutUser(event)">Logout</a></li>{% else %}<li><a href="{{ url_for('login') }}">Login</a></li><li><a href="{{ url_for('signup') }}" class="nav-cta">Create Account</a></li>{% endif %}
+      </ul>
+    </nav>
+  </div>
+</header>
+<script>async function logoutUser(e){e.preventDefault();try{await fetch('/api/auth/logout',{method:'POST'})}finally{location.href='{{ url_for('home') }}'}}</script>
